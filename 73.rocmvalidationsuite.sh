@@ -16,8 +16,8 @@ cmake \
     $ROCM_GIT_DIR/ROCmValidationSuite
 
 cmake --build .
-sudo cmake --build . --target package
-sudo dpkg -i *.deb
+#sudo cmake --build . --target package
+sudo tar xvf *.tar.gz --strip-components=1 -C /
 
 END_TIME=`date +%s`
 EXECUTING_TIME=`expr $END_TIME - $START_TIME`

@@ -2,7 +2,7 @@
 
 set -e
 
-sudo cmake -P $ROCM_GIT_DIR/MIOpen/install_deps.cmake --prefix /usr/local
+#sudo cmake -P $ROCM_GIT_DIR/MIOpen/install_deps.cmake --prefix /usr/local
 
 mkdir -p $ROCM_BUILD_DIR/miopen
 cd $ROCM_BUILD_DIR/miopen
@@ -22,7 +22,7 @@ CXX=$ROCM_INSTALL_DIR/llvm/bin/clang++ cmake \
 
 cmake --build .
 cmake --build . --target package
-sudo dpkg -i *.deb
+sudo tar xvf *.tar.gz --strip-components=1 -C /
 
 END_TIME=`date +%s`
 EXECUTING_TIME=`expr $END_TIME - $START_TIME`

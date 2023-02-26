@@ -19,7 +19,7 @@ cmake \
     -DLLVM_TARGETS_TO_BUILD="AMDGPU;X86" \
     -DLLVM_ENABLE_PROJECTS="compiler-rt;lld;clang" \
     -DCPACK_PACKAGING_INSTALL_PREFIX=$ROCM_INSTALL_DIR/llvm/ \
-    -DCPACK_GENERATOR=DEB \
+    -DCPACK_GENERATOR=TGZ \
     -DCPACK_DEBIAN_PACKAGE_MAINTAINER=amd \
     -DCPACK_PACKAGE_NAME=rocm-llvm \
     -DPACKAGE_VERSION=15.0.0.22465.${ROCM_LIBPATCH_VERSION}-${CPACK_DEBIAN_PACKAGE_RELEASE} \
@@ -29,7 +29,7 @@ cmake \
 
 cmake --build .
 cmake --build . --target package
-sudo dpkg -i *.deb
+sudo tar xvf *.tar.gz --strip-components=1 -C /
 
 END_TIME=`date +%s`
 EXECUTING_TIME=`expr $END_TIME - $START_TIME`

@@ -15,10 +15,11 @@ cmake \
   -DPROJECT_VERSION_PATCH=${ROCM_PATCH_VERSION} \
   -DROCM_PATCH_VERSION=${ROCM_LIBPATCH_VERSION} \
   -DROCM_BUILD_VERSION=${CPACK_DEBIAN_PACKAGE_RELEASE} \
+  -DCPACK_GENERATOR=TGZ \
   $ROCM_BUILD_DIR/../src/rocm-core
 
 cmake --build . --target package
-sudo dpkg -i *.deb
+sudo tar xvf *.tar.gz --strip-components=1 -C /
 
 END_TIME=`date +%s`
 EXECUTING_TIME=`expr $END_TIME - $START_TIME`

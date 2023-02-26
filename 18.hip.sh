@@ -19,7 +19,7 @@ cmake \
     -DROCCLR_PATH="$ROCCLR_DIR" \
     -DCMAKE_PREFIX_PATH="$ROCM_INSTALL_DIR" \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCPACK_GENERATOR=DEB \
+    -DCPACK_GENERATOR=TGZ \
     -DROCM_PATCH_VERSION=50100 \
     -DCMAKE_INSTALL_PREFIX=$ROCM_BUILD_DIR/hip/install \
     -G Ninja \
@@ -27,7 +27,7 @@ cmake \
 
 cmake --build .
 cmake --build . --target package
-sudo dpkg -i hip-dev*.deb hip-doc*.deb hip-runtime-amd*.deb hip-samples*.deb
+sudo tar xvf *.tar.gz --strip-components=1 -C /
 
 END_TIME=`date +%s`
 EXECUTING_TIME=`expr $END_TIME - $START_TIME`

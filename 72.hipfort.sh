@@ -18,7 +18,7 @@ CXX=$ROCM_INSTALL_DIR/hip/bin/hipcc cmake \
 
 cmake --build . -j
 cmake --build . --target package
-sudo dpkg -i *.deb
+sudo tar xvf *.tar.gz --strip-components=1 -C /
 
 END_TIME=`date +%s`
 EXECUTING_TIME=`expr $END_TIME - $START_TIME`

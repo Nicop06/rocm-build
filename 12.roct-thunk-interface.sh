@@ -12,13 +12,13 @@ cmake \
     -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_INSTALL_PREFIX=$ROCM_INSTALL_DIR \
     -DCPACK_PACKAGING_INSTALL_PREFIX=$ROCM_INSTALL_DIR \
-    -DCPACK_GENERATOR=DEB \
+    -DCPACK_GENERATOR=TGZ \
     -G "Ninja" \
     $ROCM_GIT_DIR/ROCT-Thunk-Interface/
 
 cmake --build .
 cmake --build . --target package
-sudo dpkg -i *.deb
+sudo tar xvf *.tar.gz --strip-components=1 -C /
 
 END_TIME=`date +%s`
 EXECUTING_TIME=`expr $END_TIME - $START_TIME`

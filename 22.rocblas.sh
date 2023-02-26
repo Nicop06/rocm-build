@@ -28,13 +28,13 @@ CXX=$ROCM_INSTALL_DIR/bin/hipcc cmake \
     -DCPACK_SET_DESTDIR=OFF \
     -DCMAKE_INSTALL_PREFIX=rocblas-install \
     -DCPACK_PACKAGING_INSTALL_PREFIX=$ROCM_INSTALL_DIR \
-    -DCPACK_GENERATOR=DEB \
+    -DCPACK_GENERATOR=TGZ \
     -G "Unix Makefiles" \
     $ROCM_GIT_DIR/rocBLAS
 
 cmake --build .
 cmake --build . --target package
-sudo dpkg -i *.deb
+sudo tar xvf *.tar.gz --strip-components=1 -C /
 
 END_TIME=`date +%s`
 EXECUTING_TIME=`expr $END_TIME - $START_TIME`

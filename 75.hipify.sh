@@ -13,17 +13,17 @@ cmake \
     -DCMAKE_INSTALL_PREFIX=$ROCM_INSTALL_DIR/hip/bin \
     -DCMAKE_BUILD_TYPE=Release \
     -DCPACK_PACKAGING_INSTALL_PREFIX=$ROCM_INSTALL_DIR/hip/bin \
-    -DCPACK_GENERATOR=DEB \
+    -DCPACK_GENERATOR=TGZ \
     -G Ninja \
     $ROCM_GIT_DIR/HIPIFY
 
 cmake --build .
-sudo cmake --build . --target install
+#sudo cmake --build . --target install
 cmake --build . --target package_hipify-clang
 #ninja
-#sudo ninja install
+##sudo ninja install
 #ninja package_hipify-clang
-sudo dpkg -i *.deb
+sudo tar xvf *.tar.gz --strip-components=1 -C /
 
 END_TIME=`date +%s`
 EXECUTING_TIME=`expr $END_TIME - $START_TIME`
